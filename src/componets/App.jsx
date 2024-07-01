@@ -2,18 +2,30 @@ import "./App.css";
 import Description from "./Description/Description";
 import OptionBattom from "./OptionsBattom/OptionsBattom";
 import Feedback from "./Feedback/Feedback";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function App() {
-  const [click, setClick] = useState({
+const getInitiaClick = () => {
+  const saveClick = window.localStorage.getItem("handelClick");
+  if (saveClick !== null) {
+    return JSON.parse(saveClick);
+  }
+  return {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
-  });
+  };
+};
+
+export default function App() {
+  const [click, setClick] = useState(getInitiaClick);
+
   const updateFeedback = (feedbackType) => {
     setClick({ ...click, [feedbackType]: click[feedbackType] + 1 });
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("handelClick", JSON.stringify(click));
+  }, [click]);
 
   const totalFeedback = click.good + click.neutral + click.bad;
 
