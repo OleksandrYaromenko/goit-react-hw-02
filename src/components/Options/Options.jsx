@@ -1,4 +1,4 @@
-export default function OptionBattom({ clickBtn, clickReset }) {
+export default function Options({ clickBtn, clickReset }) {
   return (
     <div>
       <button onClick={() => clickBtn("good")}>Good</button>

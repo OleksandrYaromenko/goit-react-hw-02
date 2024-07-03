@@ -1,8 +1,9 @@
 import "./App.css";
 import Description from "./Description/Description";
-import OptionBattom from "./OptionsBattom/OptionsBattom";
+import Options from "./Options/Options";
 import Feedback from "./Feedback/Feedback";
 import { useEffect, useState } from "react";
+import Notification from "./Notification/Notification";
 
 const getInitiaClick = () => {
   const saveClick = window.localStorage.getItem("handelClick");
@@ -41,7 +42,7 @@ export default function App() {
   return (
     <div>
       <Description />
-      <OptionBattom clickBtn={updateFeedback} clickReset={updateReset} />
+      <Options clickBtn={updateFeedback} clickReset={updateReset} />
       {totalFeedback > 0 ? (
         <Feedback
           value={click}
@@ -49,7 +50,7 @@ export default function App() {
           total={totalFeedback}
         />
       ) : (
-        <p>There are no any click ..</p>
+        <Notification />
       )}
     </div>
   );
