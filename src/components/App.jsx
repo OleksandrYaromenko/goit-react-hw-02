@@ -42,7 +42,11 @@ export default function App() {
   return (
     <div>
       <Description />
-      <Options clickBtn={updateFeedback} clickReset={updateReset} />
+      <Options
+        clickBtn={updateFeedback}
+        clickReset={updateReset}
+        total={totalFeedback}
+      />
       {totalFeedback > 0 ? (
         <Feedback
           value={click}
